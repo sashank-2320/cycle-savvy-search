@@ -2,7 +2,7 @@ import React from 'react';
 import VehicleCard from './VehicleCard';
 import { useApp } from '@/context/AppContext';
 
-const SearchResults = () => {
+const SearchResults = ({ onViewDetails }) => {
   const { filteredVehicles, searchQuery, selectedCategory, selectedBudget } = useApp();
 
   const getFilterText = () => {
@@ -50,7 +50,7 @@ const SearchResults = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {filteredVehicles.map((vehicle) => (
               <div key={vehicle.id} className="animate-fade-in">
-                <VehicleCard {...vehicle} />
+                <VehicleCard {...vehicle} onViewDetails={onViewDetails} />
               </div>
             ))}
           </div>
