@@ -15,11 +15,13 @@ import {
   Calendar,
   Settings,
   Award,
-  Shield
+  Shield,
+  Eye
 } from "lucide-react";
 import { useApp } from '@/context/AppContext';
 import EMICalculator from './EMICalculator';
 import BookingForm from './BookingForm';
+import Vehicle360View from './Vehicle360View';
 
 const VehicleDetails = ({ vehicleId, onBack }) => {
   const { getVehicleById, wishlist, toggleWishlist } = useApp();
@@ -179,9 +181,13 @@ const VehicleDetails = ({ vehicleId, onBack }) => {
 
             {/* Tabs */}
             <Tabs value={activeTab} onValueChange={setActiveTab}>
-              <TabsList className="grid w-full grid-cols-4">
+              <TabsList className="grid w-full grid-cols-5">
                 <TabsTrigger value="overview">Overview</TabsTrigger>
                 <TabsTrigger value="specs">Specifications</TabsTrigger>
+                <TabsTrigger value="360view">
+                  <Eye className="w-4 h-4 mr-1" />
+                  360° View
+                </TabsTrigger>
                 <TabsTrigger value="reviews">Reviews</TabsTrigger>
                 <TabsTrigger value="gallery">Gallery</TabsTrigger>
               </TabsList>
@@ -225,6 +231,14 @@ const VehicleDetails = ({ vehicleId, onBack }) => {
                     ))}
                   </div>
                 </Card>
+              </TabsContent>
+
+              <TabsContent value="360view" className="mt-6">
+                <Vehicle360View 
+                  vehicleId={vehicle.id}
+                  vehicleName={vehicle.name}
+                  baseImage={vehicle.image}
+                />
               </TabsContent>
 
               <TabsContent value="reviews" className="mt-6">
